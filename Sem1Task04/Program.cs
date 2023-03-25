@@ -1,5 +1,4 @@
-﻿// НЕ РЕШИЛ
-// Напишите программу, которая принимает на вход три числа и 
+﻿// Напишите программу, которая принимает на вход три числа и 
 // выдаёт максимальное из этих чисел.
 // Просим ввести первое число
 Console.WriteLine("Введите первое число: ");
@@ -22,21 +21,12 @@ if (inLine1 != null && inLine2 != null && inLine3 != null)
     int num3 = int.Parse(inLine3);
 
     // Задаем переменную МАКС
-    int maxnum = num1;
+    int max = num1;
     // Сравниваем переменные
-     if (maxnum > num2)
-     {
-        int maxnum = num2;
-     }
-     else
-     {
-     if (maxnum > num3)
-     {
-        int maxnum = num3;
-     }
-
-     }
+     if (num2 > max) max = num2;
+     if (num3 > max) max = num3;
+   
 Console.Write("Максимальное число: ");
-Console.WriteLine(maxnum);
+Console.WriteLine(max);
 
 }
