@@ -36,7 +36,6 @@ if (inLine1 != null && inLine2 != null && inLine3 != null)
      }
 
      }
-
 Console.Write("Максимальное число: ");
 Console.WriteLine(maxnum);
 
