@@ -8,7 +8,7 @@ int ReadData(string msg)
     int res = int.Parse(Console.ReadLine() ?? "0");
     return res;
 }
-//PrintQuterTest-печатаем тест четверти
+// печатаем тест четверти
 void PrintCoordTest(int quater)
 {
     if (quater == 1) Console.WriteLine("x > 0 , y > 0");

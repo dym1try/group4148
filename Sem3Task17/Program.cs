@@ -11,8 +11,7 @@ int ReadData(string msg)
     return res;
 }
 
-
-void PrintQuoterTest(int x, int y)
+void PrintQuoterTest(int x, int y) // печатаем тест четверти
 {
     if (x > 0 && y > 0) Console.WriteLine("Точка в 1 четверти.");
     if (x > 0 && y < 0) Console.WriteLine("Точка в 2 четверти.");
