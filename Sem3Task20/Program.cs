@@ -1,4 +1,4 @@
-﻿// Задача №20
+﻿// Задача №20 // не готова
 // Напишите программу, которая принимает 
 // на вход координаты двух точек и находит расстояние между ними в 2D пространстве.
 int ReadData(string msg)
@@ -10,7 +10,7 @@ int ReadData(string msg)
 
 double CalcLen2D(int x1, int y1, int x2, int y2)
 {
-    return Math.Sqrt(Math.Pow)
+    return Math.Sqrt(Math.Pow);
 
 
 }

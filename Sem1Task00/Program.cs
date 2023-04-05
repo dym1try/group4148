@@ -14,5 +14,4 @@ if (inLine != null)
     // Выводим данные
     Console.Write("Квадрат числа: ");
     Console.WriteLine(quadNumber);
-
 }
