@@ -7,7 +7,6 @@
 Console.WriteLine("Введите число: ");
 int num = int.Parse(Console.ReadLine()??"0");
 
-string? numNLine = Console.ReadLine();
 
 int startNum = 1; // задаем первое число в ряду
 string res = string.Empty; // создаем пустую строку для ряда просто значений
@@ -20,7 +19,7 @@ while (startNum <= num)
 Console.WriteLine(res);
 
 string resKub = string.Empty; // создаем пустую строку для ряда кубов
-int startNum3 = 1; // снова задаем первое число в ряду
+int startNum3 = 1; // снова задаем первое число в ряду 
 while (startNum3 <= num)
     {
         resKub = resKub + Math.Pow(startNum3, 3) + " ";
