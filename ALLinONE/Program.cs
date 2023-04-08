@@ -1,4 +1,6 @@
-﻿// Напишите программу, которая на вход принимает
+﻿using System.Numerics; // подключаем внешний модуль для большого целого
+
+// Напишите программу, которая на вход принимает
 // число и выдаёт его квадрат.
 // Просим ввести число
 Console.WriteLine("Введите число: ");
@@ -460,3 +462,290 @@ void SqrtTest(int a, int b)
 SqrtTest(num1, num2);
 SqrtTest(num2, num1);
 ///////////////////////////////////////////////////////////////////////////////////////////////
+// Задача №17
+// Напишите программу, которая принимает на вход координаты точки (X и Y), 
+// причём X ≠ 0 и Y ≠ 0 и выдаёт номер четверти плоскости, в которой находится эта точка.
+
+// Метод, который вернет нам значение переменной, 
+// читает данные от пользователя
+int ReadData(string msg)
+{
+    Console.WriteLine(msg);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+
+void PrintQuoterTest(int x, int y) // печатаем тест четверти
+{
+    if (x > 0 && y > 0) Console.WriteLine("Точка в 1 четверти.");
+    if (x > 0 && y < 0) Console.WriteLine("Точка в 2 четверти.");
+    if (x < 0 && y < 0) Console.WriteLine("Точка в 3 четверти.");
+    if (x < 0 && y > 0) Console.WriteLine("Точка в 4 четверти.");
+
+}
+
+int coordX = ReadData("Введите координату X");
+int coordY = ReadData("Введите координату Y");
+PrintQuoterTest(coordX,coordY);
+
+//////////////////////////////////////////////////////////////////////////
+
+// Задача №18
+// Напишите программу, которая по заданному номеру четверти, показывает
+// диапазон возможных координат точек в этой четверти (x и y).
+Console.Clear();
+int ReadData(string msg)
+{
+    Console.WriteLine(msg);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+// печатаем тест четверти
+void PrintCoordTest(int quater)
+{
+    if (quater == 1) Console.WriteLine("x > 0 , y > 0");
+    if (quater == 2) Console.WriteLine("x > 0 , y < 0");
+    if (quater == 3) Console.WriteLine("x < 0 , y < 0");
+    if (quater == 4) Console.WriteLine("x < 0 , y > 0");
+}
+
+int quaterINT = ReadData("Введите Номер Четверти: ");
+
+
+PrintCoordTest(quaterINT);
+
+/////////////////////////////////////////////////////////////////////
+// Задача 19 Напишите программу, которая принимает на вход пятизначное число и проверяет, 
+// является ли оно палиндромом.
+// 14212 -> нет
+// 12821 -> да
+// 23432 -> да    * Сделать вариант через СЛОВАРЬ четырехзначных палиндромов
+
+Console.WriteLine("Введите пятизначное число: ");
+int num = int.Parse(Console.ReadLine() ?? "0");
+
+if (num < 10000 || num > 99999)// Проверка на пятизначность
+{
+ Console.Write("Ваше число - не пятизначное.");
+}
+else // Если пятизначное, то преобразуем в строку и в массив
+{
+char[] digits = num.ToString().ToCharArray();
+
+if (digits[0] == digits[4] && digits[1] == digits[3]) // проверка на палиндром
+{
+ Console.Write("Ваше число - палиндром.");
+}
+else
+{
+ Console.Write("Ваше число - не палиндром.");
+}
+}
+/////////////////////////////////////////////////////////////////////////////////
+
+// Задача №20
+// Напишите программу, которая принимает 
+// на вход координаты двух точек и находит расстояние между ними в 2D пространстве.
+int ReadData(string message)
+{
+    Console.WriteLine(message);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+// метод принимает 4 переменных и возвращает одну
+double CalcLen2D(int x1, int y1, int x2, int y2)
+{
+    //     корень    возведение во 2 степ.   то же самое по простому
+    return Math.Sqrt(Math.Pow((x1 - x2), 2) + (y1-y2) * (y1-y2));
+}
+
+int x1 = ReadData("Введите координату X точки А: ");
+int y1 = ReadData("Введите координату Y точки А: ");
+int x2 = ReadData("Введите координату X точки B: ");
+int y2 = ReadData("Введите координату Y точки B: ");
+
+Console.WriteLine ("Расстояние между точками A и B: " + CalcLen2D(x1,y1,x2,y2));
+
+////////////////////////////////////////////////////////////////////////////////////////
+// Задача №21
+// Напишите программу, которая принимает 
+// на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
+int ReadData(string message)
+{
+    Console.WriteLine(message);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+// метод принимает 6 переменных и возвращает одну
+double CalcLen3D(int x1, int y1, int x2, int y2, int z1, int z2)
+{
+    //     корень    возведение во 2 степ.   
+    return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2) + Math.Pow((z1 - z2), 2));
+}
+
+int x1 = ReadData("Введите координату X точки А: ");
+int y1 = ReadData("Введите координату Y точки А: ");
+int z1 = ReadData("Введите координату Z точки A: ");
+
+int x2 = ReadData("Введите координату X точки B: ");
+int y2 = ReadData("Введите координату Y точки B: ");
+int z2 = ReadData("Введите координату Z точки B: ");
+
+
+Console.WriteLine ("Расстояние между точками A и B: " + CalcLen3D(x1,y1,x2,y2,z1,z2));
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+// 22
+
+//////////////////////////////////////////////////////////////////////////////////////
+// Задача 23 Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+// 3 -> 1, 8, 27
+// 5 -> 1, 8, 27, 64, 125
+// * Вывести таблицу с границами и значениями друг над другом
+
+Console.WriteLine("Введите число: "); // Считываем данные с консоли
+int num = int.Parse(Console.ReadLine()??"0");
+
+int startNum = 1; // задаем первое число в ряду
+string res = string.Empty; // создаем пустую строку для ряда просто значений
+while (startNum <= num)
+    {
+        res = res + startNum + " ";
+        startNum = startNum + 1;
+    }
+
+Console.WriteLine(res);
+
+string resKub = string.Empty; // создаем пустую строку для ряда кубов
+int startNum3 = 1; // снова задаем первое число в ряду 
+while (startNum3 <= num)
+    {
+        resKub = resKub + Math.Pow(startNum3, 3) + " ";
+        startNum3 = startNum3 + 1;
+    }
+
+Console.WriteLine(resKub);
+
+////////////////////////////////////////////////////////////////////////////////////
+// Задача №24    // Напишите программу, которая принимает на вход
+// число (А) и выдаёт сумму чисел от 1 до А.
+
+//Чтение данных консоли
+int ReadData(string message)
+{
+    Console.WriteLine(message);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+// Метод вывода результата
+void PrintResult(string msg, int res)
+{
+    Console.WriteLine(msg+res);
+}
+
+long SumSimple(int numA)
+{
+    long sum = 0;
+    for(int i =1; i<=numA;i++)
+    {
+        sum+=i;
+        //sum=sum+i;
+    }
+    return sum;
+}
+
+long SumGauss(int numA)
+{
+    return ((1+(long)numA)*(long)numA)/2;
+}
+
+int numberA=ReadData("Введите число A: ");
+
+DateTime d1 = DateTime.Now;
+long res1 = SumSimple(numberA);
+Console.WriteLine(DateTime.Now - d1);
+
+DateTime d2 = DateTime.Now;
+long res2 = SumGauss(numberA);
+Console.WriteLine(DateTime.Now - d2);
+
+PrintResult("Сумма чисел от 1 до A(простой метод):", (int)res1);
+PrintResult("Сумма чисел от 1 до A(простой Гаусса):", (int)res2);
+
+//////////////////////////////////////////////////////////////////////////////
+
+// 25
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Задача №26   Напишите программу, которая принимает на вход
+// число и выдаёт количество цифр в числе.
+
+//Чтение данных консоли
+int ReadData(string message)
+{
+    Console.WriteLine(message);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+// Метод вывода результата
+void PrintResult(string msg, int res)
+{
+    Console.WriteLine(msg+res);
+}
+
+// Подсчет количества цифр
+int CountDigit(int number)
+{
+    int result = 0;
+    while(number>0)
+    {
+        result++;
+        number=number/10;
+    }
+    return result;
+}
+
+int numberA = ReadData("Введите число А: ");
+int res1=CountDigit(numberA);
+PrintResult("Количество цифр: ", res1);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// 27
+/////////////////////////////////////////////////////////////////////////////////////////////////
+// Задача №28   Напишите программу, которая принимает на вход
+// число N и выдаёт произведение чисел от 1 до N.
+
+// using System.Numerics; // подключаем внешний модуль для большого целого - для работы снять комменты
+//Чтение данных консоли
+int ReadData(string message)
+{
+    Console.WriteLine(message);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+// Метод вывода результата
+void PrintResult(string msg, BigInteger res)
+{
+    Console.WriteLine(msg + res);
+}
+
+// Подсчет произведения
+BigInteger Factor(int numA)
+{
+    BigInteger sum = 1;
+    for (int i = 1; i <= numA; i++)
+    {
+        sum = sum * i; //
+    }
+    return sum;
+}
+
+
+int numberA = ReadData("Введите положительное число А: ");
+BigInteger res1 = Factor(numberA);
+PrintResult("Произведение всех чисел от 1 до А: ", res1);
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// 29
