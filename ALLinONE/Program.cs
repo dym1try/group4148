@@ -793,3 +793,154 @@ PrintResult("Произведение всех чисел от 1 до А: ", res
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // 29
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Задача 30. Напишите программу, которая выводит массив из 8 элементов, 
+// заполненный нулями и единицами в случайном порядке.
+
+Console.Clear();
+
+int ReadData(string message) //
+{
+    Console.WriteLine(message);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+
+void Print1DArr(int[] arr) // печать массива в []
+{
+     Console.Write("[");
+     for (int i =0; i <arr.Length -1; i++)
+     {
+          Console.Write(arr[i]+",");
+     } 
+     Console.WriteLine(arr[arr.Length-1]+"]");              
+}
+
+int[] Gen1DArr(int len, int top, int but) // генератор массива - длина, верх, низ
+{
+    int[] res = new int[len];
+    for(int i=0; i<len;i++)
+    {
+        res[i] = new Random().Next(but,top+1);
+    }
+    return res;
+}
+
+int lenArr = ReadData("Введите длину массива: ");
+int[] arr = Gen1DArr(lenArr,1,0);
+Print1DArr(arr);
+///////////////////////////////////////////////////////////////////////////////////////
+// Задача №31  Задайте массив из 12 элементов, заполненный случайными числами из 
+// промежутка [-9, 9]. Найдите сумму отрицательных и положительных элементов массива.
+
+int globPosSum = 0; // задаем глобальные переменные // Метод 1 - через глобальные переменные globPosSum, globNegSum
+int globNegSum = 0; // и ставим их в начало программы
+
+int[] Gen1DArr(int len, int minValue, int maxValue) // генератор массива - длина, верх, низ
+{
+    if (minValue > maxValue) // меняем значения местами, если мин и макс введены неправильно
+    {
+        int buf = minValue;
+        minValue = maxValue;
+        maxValue = buf;
+    }
+
+    Random rnd = new Random();
+    int[] arr = new int[len];
+    for (int i = 0; i < arr.Length; i++)
+    {
+        arr[i] = rnd.Next(minValue, maxValue + 1);
+    }
+    return arr;
+}
+
+void Print1DArr(int[] arr) // печать массива в []
+{
+    Console.Write("[");
+    for (int i = 0; i < arr.Length - 1; i++)
+    {
+        Console.Write(arr[i] + ",");
+    }
+    Console.WriteLine(arr[arr.Length - 1] + "]");
+}
+
+void NegPosSumV1(int[] arr) // Метод 1 - через глобальные переменные globPosSum, globNegSum
+{
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] > 0)
+        {
+            globPosSum += arr[i];
+        }
+        else
+        {
+            globNegSum += arr[i]; // то же самое, что и: globNegSum=globNegSum+arr[i];
+        }
+    }
+
+}
+
+int[] NegPosSumV2(int[] arr) // Метод 2 - через инкапсуляцию данных
+{
+    int positivSum = 0; // вводим ЛОКАЛЬНЫЕ переменные
+    int negativSum = 0; // 
+    int[] outArr = new int[2]; // создаем массив из 2 элементов для вывода данных 
+                               // (т.к. мы можем вывести из метода только одно значение)
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] > 0)
+        {
+            positivSum += arr[i];
+        }
+        else
+        {
+            negativSum += arr[i]; // то же самое, что и: negativSum=negativSum+arr[i];
+        }
+    }
+    outArr[0] = positivSum; // записываем значения в элементы массив
+    outArr[1] = negativSum;
+    return outArr; // возвращаем массив
+}
+(int positiv, int negativ) NegPosSumV3(int[] arr) // Метод 3 - через ТИПЫ данных
+{
+    int positivSum = 0; // вводим ЛОКАЛЬНЫЕ переменные
+    int negativSum = 0; // 
+    int[] outArr = new int[2]; // создаем массив из 2 элементов для вывода данных 
+                               // (т.к. мы можем вывести из метода только одно значение)
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] > 0)
+        {
+            positivSum += arr[i];
+        }
+        else
+        {
+            negativSum += arr[i]; // то же самое, что и: negativSum=negativSum+arr[i];
+        }
+    }
+
+    return(positivSum,negativSum); // возвращаем переменные
+}
+
+
+int[] testArr = Gen1DArr(12, -9, 9);
+
+Print1DArr(testArr);
+NegPosSumV1(testArr);
+
+(int positiv, int negativ) sum = NegPosSumV3(testArr); // Метод 3 - через ТИПЫ данных
+
+int[] res = NegPosSumV2(testArr); // создаем массив, вызываем метод V2 и передаем ему тестовый массив
+
+Console.WriteLine("Сумма положительных чисел в массиве (v1): " + globPosSum); //  Метод 1 - через глобальные переменные globPosSum, globNegSum
+Console.WriteLine("Сумма отрицательных чисел в массиве (v1): " + globNegSum);
+
+Console.WriteLine("Сумма положительных чисел в массиве (v2): " + res[0]); // Метод 2 - через инкапсуляцию данных
+Console.WriteLine("Сумма отрицательных чисел в массиве (v2): " + res[1]);
+
+Console.WriteLine("Сумма положительных чисел в массиве (v3): " + sum.positiv); // Метод 3 - через ТИПЫ данных
+Console.WriteLine("Сумма отрицательных чисел в массиве (v3): " + sum.negativ);
+
+////////////////////////////////////////////////////////////////////////////////////////
