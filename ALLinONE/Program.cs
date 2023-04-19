@@ -992,3 +992,454 @@ InversArrRef(arr);
 Print1Darray(arr);
 
 /////////////////////////////////////////////////////////////////////////////
+// Задача №33 Задайте массив. Напишите программу, которая
+// определяет, присутствует ли заданное число в массиве.
+// Например: 4; массив [6, 7, 19, 345, 3] -> нет   ///    -3; массив [6, 7, 19, 345, 3] -> да
+
+//Ввод числа
+int ReadData(string msg)
+{
+    Console.Write(msg);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+
+//Метод печати одномерного массива
+void Print1Darray(int []arr)
+{
+    Console.Write("[");
+    for(int i = 0; i<arr.Length-1; i++)
+    {
+        Console.Write(arr[i]+",");
+    }
+    Console.WriteLine(arr[arr.Length-1] + "]");
+}
+
+//Заполнение массива
+int[] Gen1DArray(int len, int top, int but)
+{
+    int[] res=new int[len];
+    for(int i=0; i<len; i++)
+    {
+        res[i]= new Random().Next(but, top+1);
+    }
+    return res;
+}
+
+void SearchElmArr(int[] arr, int numN)
+{
+    bool elFind = false;
+    for(int i=0; i<arr.Length; i++)
+    {          
+        if(numN == arr[i])
+        {
+            Console.WriteLine("элемент найден, ячейка: "+ i);
+            elFind = true;
+            //break;
+        }
+    }
+    if (elFind == false)
+    {
+        Console.WriteLine("элемент не найден");
+    } 
+}
+
+int lenArr = ReadData("Введите длину массива: ");
+int[] arr = Gen1DArray(lenArr,9,-9);
+Print1Darray(arr);
+int num = ReadData("Введите искомый элемент: ");
+SearchElmArr(arr, num);
+
+//////////////////////////////////////////////////////////////////////////////
+// Задача №35 Задайте одномерный массив из 123 случайных  чисел. Найдите количество
+// элементов массива, значения которых лежат в отрезке [10,99].
+
+// //Метод печати одномерного массива
+// void Print1Darray(int []arr)
+// {
+//     Console.Write("[");
+//     for(int i = 0; i<arr.Length-1; i++)
+//     {
+//         Console.Write(arr[i]+",");
+//     }
+//     Console.WriteLine(arr[arr.Length-1] + "]");
+// }
+
+// //Заполнение массива
+// int[] Gen1DArray(int len, int top, int but)
+// {
+//     int[] res=new int[len];
+//     for(int i=0; i<len; i++)
+//     {
+//         res[i]= new Random().Next(but, top+1);
+//     }
+//     return res;
+// }
+
+// //Подсчёт кол-ва в массиве
+// int ElmInRange(int[] arr, int min, int max)
+// {
+//     int res = 0;
+//     for(int i=0; i<arr.Length; i++)
+//     {   
+//         if(arr[i]<=max && arr[i]>=min)
+//         {
+//             res++;
+//         }
+//     }
+//     return res;
+// }
+
+// int[] arr = Gen1DArray(123,1000,0);
+// Print1Darray(arr);
+// int res = ElmInRange(arr, 10, 99);
+// Console.WriteLine("Элементов, лежащих в границах [10;99]: "+ res);
+
+int[] Gen1DArr(int len, int top, int but)
+{
+    int[] res = new int[len];
+    for (int i = 0; i < len; i++)
+    {
+        res[i] = new Random().Next(but, top + 1);
+    }
+    return res;
+}
+
+void Print1DArr(int[] arr)
+{
+    Console.Write("[");
+    for (int i = 0; i < arr.Length - 1; i++)
+    {
+        Console.Write(arr[i] + ",");
+    }
+    Console.WriteLine(arr[arr.Length - 1] + "]");
+}
+
+int SerchElementInArr(int[] arr)
+{
+    int count = 0;
+    int minValue = 10;
+    int maxValue = 99;
+
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] >= minValue && arr[i] <= maxValue)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+int[] testArr = Gen1DArr(123, 1000, 1);
+Print1DArr(testArr);
+Console.WriteLine(SerchElementInArr(testArr));
+
+///////////////////////////////////////////////////////////////////
+// №36 Задайте одномерный массив, заполненный случайными числами. Найдите сумму
+// элементов, стоящих на нечётных позициях.  
+// [3, 7, 23, 12] -> 19
+// [3, 7, -2, 1] -> 8
+// [-4, -6, 89, 6] -> 0        * Найдите все пары в массиве и выведите пользователю
+
+// В конце 5 семинара Вы прочитали это Д\З, как сумму ЧЕТНЫХ позиций. В семинаре pdf и в ЛК написано про
+// НЕЧЕТНЫЕ... Решил сделать подсчет нечетных.
+
+//Ввод длины массива
+int ReadData(string msg)
+{
+    Console.Write(msg);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+//Метод печати одномерного массива
+void Print1Darray(int[] arr)
+{
+    Console.Write("[");
+    for (int i = 0; i < arr.Length - 1; i++)
+    {
+        Console.Write(arr[i] + ",");
+    }
+    Console.WriteLine(arr[arr.Length - 1] + "]");
+}
+
+//Заполнение массива
+int[] Gen1DArray(int len, int top, int but)
+{
+    int[] res = new int[len];
+    for (int i = 0; i < len; i++)
+    {
+        res[i] = new Random().Next(but, top + 1);
+    }
+    return res;
+}
+
+int SumElmOddPos(int[] arr) // считаем сумму элементов, стоящих на нечётных позициях.
+{
+    int sum = 0;
+    for (int i = 1; i < arr.Length; i = i + 2)
+    {
+        sum += arr[i];
+    }
+    return sum;
+}
+int lenArr = ReadData("Введите длину массива: ");
+int[] arr = Gen1DArray(lenArr, 999, 100);
+Print1Darray(arr); // выводим массив
+Console.WriteLine("Сумма элементов, стоящих на нечётных позициях: " + SumElmOddPos(arr));
+
+/////////////////////////////////////////////////////////////////////////////
+
+// Задача №37
+// Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, 
+// второй и предпоследний и т.д. Результат запишите в новом массиве.
+
+// int ReadData(string msg)
+// {
+//     Console.WriteLine(msg);
+//     int res = int.Parse(Console.ReadLine() ?? ("0"));
+//     return res;
+// }
+
+// int[] Gen1Darray(int len, int minValue, int maxValue)
+// {
+//     if (minValue > maxValue)
+//     {
+//         int buf = minValue;
+//         minValue = maxValue;
+//         maxValue = buf;
+//     }
+//     Random rnd = new Random();
+//     int[] arr = new int[len];
+//     for (int i = 0; i < arr.Length; i++)
+//     {
+//         arr[i] = rnd.Next(minValue, maxValue + 1);
+//     }
+//     return arr;
+// }
+
+// void Print1DArray(int[] arr)
+// {
+//     Console.Write("[");
+//     for (int i = 0; i < arr.Length - 1; i++)
+//     {
+//         Console.Write(arr[i] + ",");
+//     }
+//     Console.WriteLine(arr[arr.Length - 1] + "]");
+// }
+
+// int[] ConverArr(int[] arr)
+// {
+//     int len = (arr.Length % 2 == 0) ? arr.Length / 2 : arr.Length / 2 + 1;
+//     int[] outArr = new int[len];
+
+//     for (int i = 0; i < len; i++)
+//     {
+//         outArr[i] = arr[i] * arr[arr.Length - 1 - i];
+//     }
+
+//     return outArr;
+// }
+
+// int Length = ReadData("Введите длину массива: ");
+// int[] arr = Gen1Darray(Length, 999, -999);
+// Print1DArray(arr);
+// int[] newArr = ConverArr(arr);
+// Print1DArray(newArr);
+
+int[] Gen1DArr(int len, int top, int but)
+{
+    int[] res = new int[len];
+    for (int i = 0; i < len; i++)
+    {
+        res[i] = new Random().Next(but, top + 1);
+    }
+    return res;
+}
+
+void Print1DArr(int[] arr)
+{
+    Console.Write("[");
+    for (int i = 0; i < arr.Length - 1; i++)
+    {
+        Console.Write(arr[i] + ",");
+    }
+    Console.WriteLine(arr[arr.Length - 1] + "]");
+}
+
+int[] ConvertArr(int[] array)
+{
+    int len = (array.Length % 2 == 0) ? array.Length / 2 : array.Length / 2 + 1;
+    int[] outArr = new int[len];
+
+    for (int i = 0; i < len; i++)
+    {
+        outArr[i] = array[i] * array[array.Length - 1 - i];
+    }
+    return outArr;
+}
+
+int[] testArr = Gen1DArr(12, 20, 1);
+Print1DArr(testArr);
+Print1DArr(ConvertArr(testArr));
+//Console.WriteLine();
+
+//////////////////////////////////////////////////////////////////////////////////
+
+// №38 Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+// [3 7 22 2 78] -> 76         [2 0,4 9 7,2 78] -> 77,6
+// * Отсортируйте массив методом вставки и методом подсчета, а затем найдите
+// разницу между первым и последним элементом. Для задачи со звездочкой
+// использовать заполнение массива целыми числами.
+
+Console.Clear();
+
+//Ввод длины массива
+int ReadData(string msg)
+{
+    Console.Write(msg);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+//Метод печати одномерного массива
+void Print1Darray(double[] arr)
+{
+    Console.Write("[");
+    for (int i = 0; i < arr.Length - 1; i++)
+    {
+        Console.Write(arr[i] + ",");
+    }
+    Console.WriteLine(arr[arr.Length - 1] + "]");
+}
+
+//Заполнение массива ВЕЩЕСТВЕННЫМИ ЧИСЛАМИ
+double[] Gen1DArray(int len, int top, int but)
+{
+    double[] res = new double[len];
+    for (int i = 0; i < len; i++)
+    {
+        res[i] = new Random().NextDouble() * 200 - 100; // Задал диапазон от -100 до 100
+    }
+    return res;
+}
+
+double DiffMinMax(double[] arr) // Находим минимум, максимум и разницу между ними
+{
+    double res = 0;
+    double min = double.MaxValue;
+    double max = double.MinValue;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (min > arr[i]) min = arr[i];
+        if (max < arr[i]) max = arr[i];
+
+    }
+    res = max - min;
+    return res;
+}
+
+int lenArr = ReadData("Введите длину массива: ");
+double[] arr = Gen1DArray(lenArr, 999, 100);
+Print1Darray(arr); // выводим массив
+DiffMinMax(arr);
+Console.WriteLine("Разница между максимальным и минимальным элементами: " + DiffMinMax(arr));
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// Задача №39 Напишите программу, которая перевернёт одномерный массив (последний элемент будет на
+// первом месте, а первый - на последнем и т.д.) Например:
+// [1 2 3 4 5] -> [5 4 3 2 1] [6 7 3 6] -> [6 3 7 6]
+// Комментарий: эту задачу можно решить 2 способами: 1) менять числа местами в исходном массиве; 
+// 2) создать новый массив и в него записать перевёрнутый исходный массив по элементам.
+
+//Метод печати одномерного массива
+void Print1Darray(int[] arr)
+{
+    Console.Write("[");
+    for (int i = 0; i < arr.Length - 1; i++)
+    {
+        Console.Write(arr[i] + ",");
+    }
+    Console.WriteLine(arr[arr.Length - 1] + "]");
+}
+
+//Заполнение массива
+int[] Gen1DArray(int len, int top, int but)
+{
+    int[] res = new int[len];
+    for (int i = 0; i < len; i++)
+    {
+        res[i] = new Random().Next(but, top + 1);
+    }
+    return res;
+}
+
+void SwapArray1(int[] arr)// 1 метод - изменение исходного массива
+{
+    int buf = 0;//вводим буферную переменную
+    for(int i=0; i<arr.Length/2;i++)// проходим половину массива
+    {
+        //(arr[i], arr[arr.Length-1-i]) = (arr[arr.Length-1-i], arr[i]); можно и так, но на старых может не работать
+        buf = arr[i];
+        arr[i] = arr[arr.Length-1-i];
+        arr[arr.Length-1-i] = buf;
+    }
+}
+
+int[] SwapNewArray2(int[] arr)
+{
+    int[] outarr = new int[arr.Length];// создаем новый массив той же длины
+    for (int i = 0; i < arr.Length; i++)
+    {
+        outarr[i]=arr[arr.Length-i-1];
+    }
+    return outarr;
+}
+
+int[] arr = Gen1DArray(15, 999, 100); // Сами задаем параметры массива
+Print1Darray(arr); // выводим исходный массив
+SwapArray1(arr);// выполняем первый метод
+Print1Darray(arr); // выводим измененный массив по первому методу
+
+SwapNewArray2(arr);// выполняем второй метод
+Print1Darray(arr); // выводим измененный массив по второму методу
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+// Задача №40  Напишите программу, которая принимает на вход три числа и проверяет, 
+// может ли существовать треугольник с сторонами такой длины.
+
+Console.Clear();
+
+// Чтение данных с консоли
+int ReadData(string message) //
+{
+    Console.WriteLine(message);
+    int res = int.Parse(Console.ReadLine() ?? "0");
+    return res;
+}
+
+bool TrianTest(int a, int b, int c)
+{
+    if ((a < b + c) && (b < a + c) && (c < a + b))// или проще одной строкой return ((a+b>c)&& (a+c>b)&& (b+c>a));
+    {
+        return true;
+    }
+    return false;
+}
+
+int a = ReadData("Введите сторону a: ");
+int b = ReadData("Введите сторону b: ");
+int c = ReadData("Введите сторону c: ");
+
+TrianTest(a, b, c);
+
+if (TrianTest(a, b, c))
+{
+    Console.WriteLine("Такой треугольник существует.");
+}
+else
+{
+    Console.WriteLine("Такого треугольника не существует.");
+}
+//////////////////////////////////////////////////////////////////////////////////////
