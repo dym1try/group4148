@@ -47,18 +47,23 @@ void Print2Darray(int[,] arr)
 
 }
 
-double SumCol2Darray(int[,] arr)
+double[] SumCol2Darray(int[,] arr)
 {
-    int sum = 0;
-    double middle = 0;
+double sum = 0;
+double[] middle = new double[arr.GetLength(1)];
 
+for (int j = 0; j < arr.GetLength(1); j++)
+{
+    sum = 0;
     for (int i = 0; i < arr.GetLength(0); i++)
     {
         sum = sum + arr[i, j];
     }
-    middle = sum / (i + 1);
-    Console.WriteLine("Среднее арифметическое" + (j) + "-го столбца: " + middle);
-    return middle;
+    middle[j] = sum / arr.GetLength(1);
+    Console.WriteLine("Среднее арифметическое " + (j) + "-го столбца: " + middle[j]);
+}
+
+return middle;
 }
 
 int row = ReadData("Введите количество строк: ");
